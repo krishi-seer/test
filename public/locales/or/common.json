@@ -1,0 +1,100 @@
+{
+  "welcome": "କୃଷି-ସୀରକୁ ସ୍ୱାଗତମ!",
+  "language": "ଭାଷା ବାଛନ୍ତୁ",
+  "dashboard": "ଡ୍ୟାଶବୋର୍ଡ",
+  "yield_prediction": "ଉତ୍ପାଦନ ପୂର୍ବାନୁମାନ",
+  "yield_prediction_desc": "ଏଆଇ ସହିତ ଫସଲ ଉତ୍ପାଦନ ଅନୁମାନ।",
+  "yield_prediction_accuracy": "ଅଧିକ ସଠିକତା",
+  "market_intelligence": "ବଜାର ବୁଦ୍ଧି",
+  "market_prices": "ବଜାର ଦର",
+  "market_prices_desc": "ବଜାର ଦର ଧାରା ପର୍ଯ୍ୟବେକ୍ଷଣ।",
+  "market_prices_forecast": "ପୂର୍ବାନୁମାନ ଉପଲବ୍ଧ",
+  "soil_health": "ମାଟି ସ୍ୱାସ୍ଥ୍ୟ",
+  "soil_health_desc": "ମାଟି ଉପାଦାନ ଏବଂ pH ନିରୀକ୍ଷଣ।",
+  "soil_health_condition": "ଭଲ ଅବସ୍ଥା",
+  "advisory": "ପରାମର୍ଶ",
+  "community": "ସମୁଦାୟ",
+  "profile": "ପ୍ରୋଫାଇଲ",
+  "quick_actions": "ଦ୍ରୁତ କାର୍ଯ୍ୟ",
+  "upload_crop_image": "ଫସଲ ଫଟୋ ଅପଲୋଡ୍",
+  "check_weather": "ଆବହାଉ ପରିଖ୍ୟା",
+  "get_advisory": "ପରାମର୍ଶ ପାଆନ୍ତୁ",
+  "view_badges": "ବ୍ୟାଜ୍ ଦେଖନ୍ତୁ",
+  "login": "ଲଗିନ୍",
+  "signup": "ସାଇନ୍ ଅପ୍",
+  "logout": "ଲଗାଉଟ୍",
+  "log_out": "ଲଗାଉଟ୍",
+  "community_title": "ସମୁଦାୟ",
+  "farmer_age_location": "ବୟସ୍: {{age}}, ଅବସ୍ଥାନ: {{location}}",
+  "username_label": "ଉପଯୋଗକର୍ତ୍ତାନାମ: {{username}}",
+  "loading_farmers": "ଚାଷୀମାନଙ୍କୁ ଲୋଡ୍ କରାଯାଉଛି...",
+  "retry": "ପୁନର୍ବାର ଚେଷ୍ଟା କରନ୍ତୁ",
+  "no_farmers_registered": "ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ଚାଷୀ ନିବନ୍ଧିତ ନାହାନ୍ତି।",
+  "load_farmers_failed": "ଚାଷୀମାନଙ୍କୁ ଲୋଡ୍ କରିବାରେ ବିଫଳ।",
+  "load_farmers_failed_with_message": "ଲୋଡ୍ ବିଫଳ: {{message}}",
+  "network_error_message": "ନେଟୱର୍କ ତ୍ରୁଟି। ଯୋଗାଯୋଗ ଯାଞ୍ଚ କରନ୍ତୁ।",
+  "current_weather": "ବର୍ତ୍ତମାନ ଆବହାଉ",
+  "welcome_back": "ସ୍ୱାଗତମ, {{name}}!",
+  "farm_status_text": "ଏହି ଋତୁରେ ଆପଣଙ୍କ ଖେତର ସ୍ଥିତି",
+  "upload_photo": "ଫଟୋ ଅପଲୋଡ୍ କରନ୍ତୁ"
+  ,"sign_up": "ସାଇନ୍ ଅପ୍"
+  ,"signing_up": "ଖାତା ସୃଷ୍ଟି ହେଉଅଛି..."
+  ,"signup_success": "ଖାତା ସୃଷ୍ଟି ହେଲା! ପୁନଃନିର୍ଦ୍ଦେଶ ହେଉଅଛି..."
+  ,"signup_failed": "ସାଇନ୍ ଅପ୍ ବିଫଳ"
+  ,"full_name": "ପୁରା ନାମ"
+  ,"email": "ଇମେଲ୍"
+  ,"email_placeholder": "yourname@example.com"
+  ,"password": "ପାସୱାର୍ଡ"
+  ,"username": "ଉପଯୋଗକର୍ତ୍ତାନାମ"
+  ,"username_placeholder": "ଉଦା. ramkumar"
+  ,"have_account": "ପୂର୍ବରୁ ଖାତା ଅଛି କି?"
+  ,"log_in": "ଲଗିନ୍"
+  ,"dont_have_account": "ଖାତା ନାହିଁ କି?"
+  ,"age": "ବୟସ୍"
+  ,"location": "ଅବସ୍ଥାନ"
+  ,"season_current": "ବର୍ତ୍ତମାନ ଋତୁ"
+  ,"month_now": "ଏବେ"
+  ,"month_next": "ପରବର୍ତ୍ତୀ"
+  ,"month_two_months": "2 ମାସ"
+  ,"month_three_months": "3 ମାସ"
+  ,"quintals": "କ୍ୱିଣ୍ଟାଲ୍"
+  ,"predicted_yield": "ଅନୁମାନିତ ଉତ୍ପାଦନ"
+  ,"predicted_yield_label": "ଅନୁମାନିତ ଉତ୍ପାଦନ"
+  ,"confidence_range": "ପରିସର: {{min}}-{{max}}"
+  ,"quintal": "କ୍ୱିଣ୍ଟାଲ୍"
+  ,"price": "ଦର"
+  ,"current_price": "ବର୍ତ୍ତମାନ ଦର"
+  ,"forecast_increase": "ପୂର୍ବାନୁମାନ +{{percent}} {{months}} ମାସରେ"
+  ,"good_soil_balance": "ଭଲ ମାଟି ସମତୋଳନ"
+  ,"temperature": "ତାପମାତ୍ରା"
+  ,"partly_cloudy": "ଆଂଶିକ ମେଘାଚ୍ଛନ୍ନ"
+  ,"humidity": "ଆର୍ଦ୍ରତା: {{value}}"
+  ,"wind_speed": "ପବନ: {{value}}"
+  ,"features": "ବିଶେଷତା"
+  ,"govt_schemes": "ସରକାରୀଯୋଜନା"
+  ,"govt_schemes_desc": "PM-Kisan, ସୋଇଲ୍ ହେଲ୍ଥ୍ କାର୍ଡ, ସବ୍ସିଡି ଇତ୍ୟାଦି ଖୋଜନ୍ତୁ।"
+  ,"open": "ଖୋଲନ୍ତୁ"
+  ,"voice_assistant": "ଭଏସ୍ ସହାୟକ"
+  ,"voice_assistant_desc": "ନିଜ ଭାଷାରେ କହନ୍ତୁ; ପ୍ରଣାଳୀ ଉତ୍ତର ଦେବ।"
+  ,"ai_chatbot": "ଏଆଇ ଚାଟ୍ବଟ୍"
+  ,"ai_chatbot_desc": "କୃଷି ପ୍ରଶ୍ନ ପଚାରନ୍ତୁ।"
+  ,"search": "ଖୋଜନ୍ତୁ"
+  ,"filter_crop": "ଫସଲ ଅନୁସାରେ"
+  ,"filter_region": "ଅଞ୍ଚଳ ଅନୁସାରେ"
+  ,"learn_more": "ଅଧିକ ଜାଣନ୍ତୁ"
+  ,"start_listening": "ଶୁଣିବା ଆରମ୍ଭ"
+  ,"stop_listening": "ବନ୍ଦ କରନ୍ତୁ"
+  ,"playback": "ପ୍ଲେବ୍ୟାକ୍"
+  ,"say_something": "କିଛି କହନ୍ତୁ..."
+  ,"voice_note": "ବ୍ରାଉଜର Web Speech API ବ୍ୟବହାର ହେଉଛି। ପ୍ରୋଡକ୍ସନରେ Google STT/TTS କିମ୍ବା Whisper + TTS ଯୋଡନ୍ତୁ।"
+  ,"chatbot_welcome": "ନମସ୍କାର! କୃଷି ସମ୍ପର୍କିତ ପ୍ରଶ୍ନ ପଚାରନ୍ତୁ।"
+  ,"chatbot_fallback": "ଧନ୍ୟବାଦ! ଶୀଘ୍ର ଉତ୍ତର ଯୋଡ଼ାଯିବ।"
+  ,"chatbot_sow_hint": "ବିଆ ବପଣ ପାଇଁ ଅଞ୍ଚଳର ବର୍ଷା/ତାପମାତ୍ରା ଦେଖନ୍ତୁ।"
+  ,"chatbot_fert_hint": "ମାଟି ପରୀକ୍ଷା ଆଧାରରେ ସମତୋଳିତ NPK ବ୍ୟବହାର କରନ୍ତୁ।"
+  ,"ask_anything": "କିଛି ପଚାରନ୍ତୁ..."
+  ,"send": "ପଠାନ୍ତୁ"
+  ,"chatbot_note": "ଏହା ଡେମୋ UI ଅଟେ। ଲାଇଭ୍ ପାଇଁ LLM ବ୍ୟାକଏଣ୍ଡ ଯୋଡନ୍ତୁ।"
+  ,"ai_advice": "ଏଆଇ ପରାମର୍ଶ"
+  ,"ai_advice_summary": "ଏଆଇ ପରାମର୍ଶ"
+  ,"photo_tip_instruction": "ଫସଲ ସ୍ପଷ୍ଟ ଦେଖାଯାଉ ଏବଂ ଭଲ ଆଲୋକ ରହୁ।"
+}

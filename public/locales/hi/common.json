@@ -1,0 +1,100 @@
+{
+  "welcome": "कृषि-सीर में आपका स्वागत है!",
+  "language": "अपनी भाषा चुनें",
+  "dashboard": "डैशबोर्ड",
+  "yield_prediction": "उत्पादन पूर्वानुमान",
+  "yield_prediction_desc": "एआई से फसल उत्पादन का अनुमान लगाएँ।",
+  "yield_prediction_accuracy": "उच्च सटीकता",
+  "market_intelligence": "बाज़ार बुद्धिमत्ता",
+  "market_prices": "बाज़ार कीमतें",
+  "market_prices_desc": "बाज़ार कीमतों की प्रवृत्ति देखें।",
+  "market_prices_forecast": "पूर्वानुमान उपलब्ध",
+  "soil_health": "मिट्टी का स्वास्थ्य",
+  "soil_health_desc": "मिट्टी के पोषक तत्व और pH देखें।",
+  "soil_health_condition": "अच्छी स्थिति",
+  "advisory": "सलाह",
+  "community": "समुदाय",
+  "profile": "प्रोफ़ाइल",
+  "quick_actions": "त्वरित कार्य",
+  "upload_crop_image": "फसल की फोटो अपलोड करें",
+  "check_weather": "मौसम देखें",
+  "get_advisory": "सलाह प्राप्त करें",
+  "view_badges": "बैज देखें",
+  "login": "लॉग इन",
+  "signup": "साइन अप",
+  "logout": "लॉग आउट",
+  "log_out": "लॉग आउट",
+  "community_title": "समुदाय",
+  "farmer_age_location": "आयु: {{age}}, स्थान: {{location}}",
+  "username_label": "उपयोगकर्ता नाम: {{username}}",
+  "loading_farmers": "किसानों को लोड किया जा रहा है...",
+  "retry": "पुनः प्रयास करें",
+  "no_farmers_registered": "अभी तक कोई किसान पंजीकृत नहीं है।",
+  "load_farmers_failed": "किसानों को लोड करने में विफल।",
+  "load_farmers_failed_with_message": "किसानों को लोड करने में विफल: {{message}}",
+  "network_error_message": "नेटवर्क त्रुटि। कृपया कनेक्शन जांचें।",
+  "current_weather": "वर्तमान मौसम",
+  "welcome_back": "स्वागत है, {{name}}!",
+  "farm_status_text": "इस मौसम में आपके खेत में क्या हो रहा है",
+  "upload_photo": "फोटो अपलोड करें"
+  ,"sign_up": "साइन अप"
+  ,"signing_up": "खाता बनाया जा रहा है..."
+  ,"signup_success": "खाता बन गया! रीडाइरेक्ट हो रहा है..."
+  ,"signup_failed": "साइन अप विफल"
+  ,"full_name": "पूरा नाम"
+  ,"email": "ईमेल"
+  ,"email_placeholder": "yourname@example.com"
+  ,"password": "पासवर्ड"
+  ,"username": "उपयोगकर्ता नाम"
+  ,"username_placeholder": "उदा. ramkumar"
+  ,"have_account": "पहले से खाता है?"
+  ,"log_in": "लॉग इन"
+  ,"dont_have_account": "खाता नहीं है?"
+  ,"age": "आयु"
+  ,"location": "स्थान"
+  ,"season_current": "वर्तमान सीज़न"
+  ,"month_now": "अब"
+  ,"month_next": "अगला"
+  ,"month_two_months": "2 महीने"
+  ,"month_three_months": "3 महीने"
+  ,"quintals": "क्विंटल"
+  ,"predicted_yield": "अनुमानित उत्पादन"
+  ,"predicted_yield_label": "अनुमानित उत्पादन"
+  ,"confidence_range": "सीमा: {{min}}-{{max}}"
+  ,"quintal": "क्विंटल"
+  ,"price": "कीमत"
+  ,"current_price": "वर्तमान कीमत"
+  ,"forecast_increase": "पूर्वानुमान +{{percent}} {{months}} महीनों में"
+  ,"good_soil_balance": "अच्छा मिट्टी संतुलन"
+  ,"temperature": "तापमान"
+  ,"partly_cloudy": "आंशिक बादल"
+  ,"humidity": "आर्द्रता: {{value}}"
+  ,"wind_speed": "हवा: {{value}}"
+  ,"features": "फ़ीचर्स"
+  ,"govt_schemes": "सरकारी योजनाएँ"
+  ,"govt_schemes_desc": "पीएम-किसान, सॉइल हेल्थ कार्ड, सब्सिडी आदि खोजें।"
+  ,"open": "खोलें"
+  ,"voice_assistant": "वॉइस असिस्टेंट"
+  ,"voice_assistant_desc": "अपनी भाषा में बोलें; सिस्टम जवाब देगा।"
+  ,"ai_chatbot": "एआई चैटबॉट"
+  ,"ai_chatbot_desc": "खेती से जुड़े प्रश्न पूछें।"
+  ,"search": "खोज"
+  ,"filter_crop": "फसल से फ़िल्टर"
+  ,"filter_region": "क्षेत्र से फ़िल्टर"
+  ,"learn_more": "और जानें"
+  ,"start_listening": "सुनना शुरू"
+  ,"stop_listening": "रोकें"
+  ,"playback": "प्लेबैक"
+  ,"say_something": "कुछ बोलें..."
+  ,"voice_note": "ब्राउज़र के वेब स्पीच API का उपयोग। प्रोडक्शन में Google STT/TTS या Whisper + TTS जोड़ें।"
+  ,"chatbot_welcome": "नमस्ते! खेती से जुड़ा कोई भी सवाल पूछें।"
+  ,"chatbot_fallback": "धन्यवाद! इसका जवाब जल्द ही जोड़ेंगे।"
+  ,"chatbot_sow_hint": "बुवाई के लिए अपने क्षेत्र का बारिश और तापमान विंडो देखें।"
+  ,"chatbot_fert_hint": "मिट्टी जांच पर आधारित संतुलित NPK उपयोग करें।"
+  ,"ask_anything": "कुछ भी पूछें..."
+  ,"send": "भेजें"
+  ,"chatbot_note": "यह एक डेमो UI है। लाइव करने के लिए LLM बैकएंड जोड़ें।"
+  ,"ai_advice": "एआई सलाह"
+  ,"ai_advice_summary": "एआई सलाह"
+  ,"photo_tip_instruction": "फसल स्पष्ट दिखे और रोशनी अच्छी हो।"
+}
