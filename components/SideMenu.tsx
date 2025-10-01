@@ -13,19 +13,19 @@ export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
   const { t } = useTranslation();
 
   const menuItems = [
-    { href: "/", icon: "🏠", label: "home" },
-    { href: "/dashboard", icon: "📊", label: "dashboard" },
-    { href: "/advisory", icon: "🌱", label: "get_advisory" },
-    { href: "/irrigation", icon: "💧", label: "irrigation_title", isNew: true },
-    { href: "/fertilizer", icon: "🧪", label: "fertilizer_title", isNew: true },
-    { href: "/weather", icon: "🌤️", label: "check_weather" },
-    { href: "/chatbot", icon: "🤖", label: "ai_chatbot" },
-    { href: "/voice", icon: "🎤", label: "voice_assistant" },
-    { href: "/schemes", icon: "📋", label: "govt_schemes" },
-    { href: "/community", icon: "👥", label: "community" },
-    { href: "/research", icon: "📚", label: "research_title", isNew: true },
-    { href: "/contact", icon: "📞", label: "contact" },
-    { href: "/profile", icon: "👤", label: "profile" },
+    { href: "/", icon: "🏠", label: t("home") },
+    { href: "/dashboard", icon: "📊", label: t("dashboard") },
+    { href: "/advisory", icon: "🌱", label: t("get_advisory") },
+    { href: "/irrigation", icon: "💧", label: t("irrigation_title"), isNew: true },
+    { href: "/fertilizer", icon: "🧪", label: t("fertilizer_title"), isNew: true },
+    { href: "/weather", icon: "🌤️", label: t("check_weather") },
+    { href: "/chatbot", icon: "🤖", label: t("ai_chatbot") },
+    { href: "/voice", icon: "🎤", label: t("voice_assistant") },
+    { href: "/schemes", icon: "📋", label: t("govt_schemes") },
+    { href: "/community", icon: "👥", label: t("community") },
+    { href: "/research", icon: "📚", label: t("research_title"), isNew: true },
+    { href: "/contact", icon: "📞", label: t("contact") },
+    { href: "/profile", icon: "👤", label: t("profile") },
   ];
 
   if (!isOpen) return null;
@@ -40,10 +40,11 @@ export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
       
       {/* Side Menu */}
       <div className={`
-        fixed top-0 left-0 h-full w-80 bg-white/95 backdrop-blur-lg shadow-2xl z-50 
+        fixed top-0 left-0 h-full w-full max-w-xs bg-white/95 backdrop-blur-lg shadow-2xl z-50 
         transform transition-transform duration-300 ease-in-out
         ${isOpen ? 'translate-x-0' : '-translate-x-full'}
         border-r border-white/20 overflow-y-auto
+        sm:max-w-sm md:max-w-md lg:w-80
       `}>
         {/* Header */}
         <div className="p-6 border-b border-gray-100">
@@ -70,22 +71,22 @@ export default function SideMenu({ isOpen, onClose }: SideMenuProps) {
         </div>
 
         {/* Navigation Links */}
-        <nav className="p-4 space-y-2 flex-1">
+        <nav className="p-2 space-y-2 flex-1">
           {menuItems.map((item, index) => (
             <Link
               key={index}
               href={item.href}
               onClick={onClose}
-              className="flex items-center space-x-4 p-3 rounded-xl hover:bg-gradient-to-r hover:from-green-50 hover:to-blue-50 transition-all duration-200 group relative"
+              className="flex items-center space-x-3 p-2 rounded-lg hover:bg-gradient-to-r hover:from-green-50 hover:to-blue-50 transition-all duration-200 group relative w-full"
             >
-              <span className="text-2xl group-hover:scale-110 transition-transform">
+              <span className="text-xl group-hover:scale-110 transition-transform">
                 {item.icon}
               </span>
-              <span className="font-medium text-gray-700 group-hover:text-green-600 transition-colors">
-                {item.isNew ? item.label : t(item.label)}
+              <span className="font-medium text-gray-700 group-hover:text-green-600 transition-colors truncate w-full">
+                {item.label}
               </span>
               {item.isNew && (
-                <span className="absolute right-3 top-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full animate-pulse">
+                <span className="absolute right-2 top-2 bg-green-500 text-white text-xs px-2 py-1 rounded-full animate-pulse">
                   NEW
                 </span>
               )}
