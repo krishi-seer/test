@@ -12,9 +12,22 @@ export type SimpleWeather = {
 export async function fetchOpenMeteoWeather(latitude: number, longitude: number): Promise<SimpleWeather | null> {
   try {
     const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code&hourly=precipitation_probability&timezone=auto`;
-    const res = await fetch(url, { cache: "no-store" });
-    if (!res.ok) return null;
+    console.log('Fetching weather from:', url);
+    
+    const res = await fetch(url, { 
+      cache: "no-store",
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+    
+    if (!res.ok) {
+      console.error('Weather API error:', res.status, res.statusText);
+      return null;
+    }
+    
     const data = await res.json();
+    console.log('Weather API response:', data);
     const temp = data?.current?.temperature_2m as number | undefined;
     const humidity = data?.current?.relative_humidity_2m as number | undefined;
     const wind = data?.current?.wind_speed_10m as number | undefined;

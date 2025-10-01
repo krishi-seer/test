@@ -36,32 +36,53 @@ export default function WeatherWidget() {
       try {
         // First try to get location
         const position = await new Promise<GeolocationPosition>((resolve, reject) => {
-          navigator.geolocation.getCurrentPosition(resolve, reject);
+          navigator.geolocation.getCurrentPosition(resolve, reject, {
+            timeout: 5000,
+            maximumAge: 0,
+            enableHighAccuracy: false
+          });
         });
 
         const { latitude: lat, longitude: lon } = position.coords;
+        console.log('Geolocation successful:', { lat, lon });
         
         // Then fetch weather data
         const mod = await import("@/lib/weather");
         const weatherData = await mod.fetchOpenMeteoWeather(lat, lon);
+        console.log('Weather data fetched:', weatherData);
         setWeather(weatherData);
       } catch (e) {
+        console.error('Geolocation failed:', e);
         // If geolocation fails, try IP-based location
         try {
-          const res = await fetch("https://ipapi.co/json/", { cache: "no-store" });
-          if (!res.ok) throw new Error("IP lookup failed");
+          console.log('Attempting IP-based location...');
+          const res = await fetch("https://ipapi.co/json/", { 
+            cache: "no-store",
+            headers: {
+              'Accept': 'application/json'
+            }
+          });
+          if (!res.ok) {
+            console.error('IP lookup failed:', res.status, res.statusText);
+            throw new Error("IP lookup failed");
+          }
           const data = await res.json();
+          console.log('IP location data:', data);
           const lat = Number(data?.latitude);
           const lon = Number(data?.longitude);
           
           if (Number.isFinite(lat) && Number.isFinite(lon)) {
+            console.log('Using IP-based coordinates:', { lat, lon });
             const mod = await import("@/lib/weather");
             const weatherData = await mod.fetchOpenMeteoWeather(lat, lon);
+            console.log('Weather data fetched (IP-based):', weatherData);
             setWeather(weatherData);
           } else {
+            console.error('Invalid coordinates from IP lookup');
             setError("Could not determine location");
           }
-        } catch {
+        } catch (err) {
+          console.error('IP-based location failed:', err);
           setError(t("analysis_failed"));
         }
       } finally {

@@ -84,11 +84,33 @@ npm install
 # Set up environment variables (see Environment Setup)
 cp .env.example .env.local
 
-# Run development server
+# Run development server using the server management script
+server start    # Start the server
+server stop     # Stop the server
+server restart  # Restart the server
+
+# Or run directly with npm
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the application.
+The application will be available at [http://localhost:3000](http://localhost:3000).
+
+### Server Management Script
+
+The `server.bat` script provides easy management of the development server:
+
+```bash
+# Start the development server
+server start
+
+# Stop the development server
+server stop
+
+# Restart the development server
+server restart
+```
+
+This script automatically handles process management and ensures clean server starts and stops.
 
 ## 📦 Installation
 
