@@ -1,28 +1,26 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-import Backend from "i18next-http-backend";
+import HttpApi from "i18next-http-backend";
+import LanguageDetector from "i18next-browser-languagedetector";
 
-const i18nConfig = {
-  lng: "en",
-  fallbackLng: "en",
-  supportedLngs: ["en", "hi", "or"],
-  debug: false,
-  interpolation: {
-    escapeValue: false,
-  },
-  react: {
-    useSuspense: false,
-  },
-  backend: {
-    loadPath: "/locales/{{lng}}/common.json",
-  },
-};
-
-if (!i18n.isInitialized) {
-  i18n
-    .use(Backend)
-    .use(initReactI18next)
-    .init(i18nConfig);
-}
+i18n
+  .use(initReactI18next)
+  .use(HttpApi)
+  .use(LanguageDetector)
+  .init({
+    fallbackLng: "en",
+    supportedLngs: ["en", "hi", "or"],
+    backend: {
+      loadPath: "/locales/{{lng}}/common.json",
+    },
+    detection: {
+      order: ["localStorage", "navigator"],
+      caches: ["localStorage"],
+      lookupLocalStorage: "lng",
+    },
+    react: {
+      useSuspense: false,
+    },
+  });
 
 export default i18n;

@@ -6,6 +6,7 @@ export type SimpleWeather = {
   aqiPM10?: number;
   aqiPM2_5?: number;
   summary?: string;
+  weatherCode?: number;
 };
 
 export async function fetchOpenMeteoWeather(latitude: number, longitude: number): Promise<SimpleWeather | null> {
@@ -46,6 +47,7 @@ export async function fetchOpenMeteoWeather(latitude: number, longitude: number)
       humidity,
       windKph: typeof wind === "number" ? Math.round(wind * 3.6) : undefined,
       summary,
+      weatherCode: code,
     };
   } catch {
     return null;
