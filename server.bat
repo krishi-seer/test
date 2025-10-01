@@ -59,10 +59,32 @@ if defined node_pid (
 
 echo Starting development server...
 echo.
-start "Krishi-Seer Dev Server" cmd /c "npm run dev"
-echo Server started successfully! The application will be available at:
+echo Checking if npm is installed...
+where npm >nul 2>&1
+if %errorlevel% neq 0 (
+    echo Error: npm is not installed or not in PATH
+    echo Please install Node.js and npm first
+    pause
+    exit /b 1
+)
+
+echo Checking if node_modules exists...
+if not exist "node_modules" (
+    echo node_modules not found. Installing dependencies...
+    npm install
+    if %errorlevel% neq 0 (
+        echo Error: Failed to install dependencies
+        pause
+        exit /b 1
+    )
+)
+
+echo Starting the development server...
+start "Krishi-Seer Dev Server" cmd /k "npm run dev && pause"
+echo Server starting! The application will be available at:
 echo http://localhost:3000
 echo.
+echo Note: A new window has opened running the server.
 echo Press any key to continue...
 pause >nul
 exit /b 0
