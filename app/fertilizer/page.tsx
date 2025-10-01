@@ -14,6 +14,16 @@ const FertilizerPage = () => {
   const [cropStage, setCropStage] = useState("vegetative");
   const [targetYield, setTargetYield] = useState(50);
   const [fieldSize, setFieldSize] = useState(1);
+
+  // Labels for the form fields
+  const formLabels = {
+    soilTest: t('fertilizer_soil_test'),
+    cropType: t('fertilizer_crop_type'),
+    cropStage: t('fertilizer_crop_stage'),
+    targetYield: t('fertilizer_target_yield'),
+    fieldSize: t('fertilizer_field_size'),
+    generate: t('fertilizer_generate')
+  };
   const [userName, setUserName] = useState("");
   const [userId, setUserId] = useState<string | null>(null);
   const [scheduleGenerated, setScheduleGenerated] = useState(false);

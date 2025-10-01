@@ -55,20 +55,20 @@
   ,"crop_detected_generic": "A crop-like image was detected. Detailed model integration pending."
   ,"analysis_failed": "Image analysis failed. Please try again."
   ,"need_clearer_photo": "Confidence is low. Please upload a clearer crop photo."
-  ,"sign_up": "Sign Up"
-  ,"signing_up": "Creating account..."
-  ,"signup_success": "Account created! Redirecting..."
-  ,"signup_failed": "Sign up failed"
-  ,"full_name": "Full name"
-  ,"email": "Email"
-  ,"email_placeholder": "yourname@example.com"
-  ,"password": "Password"
-  ,"username": "Username"
-  ,"username_placeholder": "e.g. ramkumar"
-  ,"have_account": "Already have an account?"
-  ,"log_in": "Log In"
-  ,"dont_have_account": "Don't have an account?"
-  ,"age": "Age"
+  ,"signUp": "Sign Up",
+  "signingUp": "Creating account...",
+  "signupSuccess": "Account created! Redirecting...",
+  "signupFailed": "Sign up failed",
+  "fullName": "Full name",
+  "email": "Email",
+  "emailPlaceholder": "yourname@example.com",
+  "password": "Password",
+  "username": "Username",
+  "usernamePlaceholder": "e.g. ramkumar",
+  "haveAccount": "Already have an account?",
+  "logIn": "Log In",
+  "dontHaveAccount": "Don't have an account?",
+  "age": "Age"
   ,"location": "Location"
   ,"season_current": "Current season"
   ,"month_now": "Now"
@@ -96,20 +96,20 @@
   ,"voice_assistant_desc": "Speak in your language; we transcribe and reply back."
   ,"ai_chatbot": "AI Chatbot"
   ,"ai_chatbot_desc": "Ask farming FAQs and get answers."
-  ,"search": "Search"
-  ,"filter_crop": "Filter by crop"
-  ,"filter_region": "Filter by region"
-  ,"learn_more": "Learn more"
-  ,"start_listening": "Start listening"
-  ,"stop_listening": "Stop"
-  ,"playback": "Playback"
-  ,"say_something": "Say something..."
-  ,"voice_note": "Uses browser's Web Speech API. For production, wire Google STT/TTS or Whisper + TTS."
-  ,"chatbot_welcome": "Hi! Ask me any farming question."
-  ,"chatbot_fallback": "Thanks! I will learn to answer that soon."
-  ,"chatbot_sow_hint": "For sowing time, check your region's rainfall and temperature window."
-  ,"chatbot_fert_hint": "Use balanced NPK based on soil test; avoid overuse of nitrogen."
-  ,"ask_anything": "Ask anything..."
-  ,"send": "Send"
-  ,"chatbot_note": "This is a demo chatbot UI. Connect an LLM backend to go live."
+  ,"search": "Search",
+  "filterCrop": "Filter by crop",
+  "filterRegion": "Filter by region",
+  "learnMore": "Learn more",
+  "startListening": "Start listening",
+  "stopListening": "Stop",
+  "playback": "Playback",
+  "saySomething": "Say something...",
+  "voiceNote": "Uses browser's Web Speech API. For production, wire Google STT/TTS or Whisper + TTS.",
+  "chatbotWelcome": "Hi! Ask me any farming question.",
+  "chatbotFallback": "Thanks! I will learn to answer that soon.",
+  "chatbotSowHint": "For sowing time, check your region's rainfall and temperature window.",
+  "chatbotFertHint": "Use balanced NPK based on soil test; avoid overuse of nitrogen.",
+  "askAnything": "Ask anything...",
+  "send": "Send",
+  "chatbotNote": "This is a demo chatbot UI. Connect an LLM backend to go live."
 }

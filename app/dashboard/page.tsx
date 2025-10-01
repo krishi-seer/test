@@ -2,6 +2,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { LineChart, Line } from "recharts";
+import WeatherWidget from "@/components/WeatherWidget";
 import Button from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import { useTranslation } from "react-i18next";
@@ -54,25 +55,7 @@ const DashboardPage = () => {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <Card className="border-none shadow-md hover:shadow-lg transition-shadow">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-xl font-bold text-gray-800">{t("current_weather")}</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-gray-600">{t("temperature")}</p>
-                <p className="text-3xl font-bold text-green-600">28°C</p>
-                <p className="text-gray-600">{t("partly_cloudy")}</p>
-              </div>
-              <div className="text-6xl">☀️</div>
-            </div>
-            <div className="mt-4 flex justify-between text-sm text-gray-600">
-              <span>{t("humidity", { value: "65%" })}</span>
-              <span>{t("wind_speed", { value: "8 km/h" })}</span>
-            </div>
-          </CardContent>
-        </Card>
+        <WeatherWidget />
 
         <Card className="border-none shadow-md hover:shadow-lg transition-shadow">
           <CardHeader className="pb-2">

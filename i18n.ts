@@ -3,9 +3,9 @@ import { initReactI18next } from "react-i18next";
 import Backend from "i18next-http-backend";
 
 const i18nConfig = {
-  lng: "or",
-  fallbackLng: "or",
-  supportedLngs: ["or", "hi", "en"],
+  lng: "en",
+  fallbackLng: "en",
+  supportedLngs: ["en", "hi", "or"],
   debug: false,
   interpolation: {
     escapeValue: false,
