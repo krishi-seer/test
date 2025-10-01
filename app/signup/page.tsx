@@ -154,7 +154,7 @@ export default function SignUpPage() {
                       className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white/80 backdrop-blur-sm transition-all" 
                       value={age} 
                       onChange={(e) => setAge(e.target.value)} 
-                      placeholder="Age"
+                      placeholder="Enter your age"
                       min="18"
                       max="100"
                       disabled={loading}
@@ -173,7 +173,7 @@ export default function SignUpPage() {
                       className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white/80 backdrop-blur-sm transition-all" 
                       value={location} 
                       onChange={(e) => setLocation(e.target.value)} 
-                      placeholder="City, State"
+                      placeholder="Enter your city and state"
                       disabled={loading}
                     />
                   </div>
@@ -192,7 +192,7 @@ export default function SignUpPage() {
                     className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white/80 backdrop-blur-sm transition-all" 
                     value={username} 
                     onChange={(e) => setUsername(e.target.value)} 
-                    placeholder={t("username_placeholder") as string}
+                    placeholder="Choose a username"
                     disabled={loading}
                   />
                 </div>
@@ -208,7 +208,7 @@ export default function SignUpPage() {
                   <input 
                     type="email" 
                     className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent bg-white/80 backdrop-blur-sm transition-all" 
-                    placeholder={t("email_placeholder") as string} 
+                    placeholder="Enter your email" 
                     value={email} 
                     onChange={(e) => setEmail(e.target.value)} 
                     required 

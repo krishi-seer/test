@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useTranslation } from "react-i18next";
-import Image from "next/image";
 
 type SimpleWeather = {
   temperatureC?: number;
@@ -14,15 +13,15 @@ type SimpleWeather = {
   weatherCode?: number;
 };
 
-const getWeatherImage = (code: number | undefined) => {
-  if (code === undefined) return "/thumbnail.jpeg"; 
-  if (code >= 0 && code <= 1) return "https://images.unsplash.com/photo-1590074899043-693c46995a86?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"; // Clear sky
-  if (code >= 2 && code <= 3) return "https://images.unsplash.com/photo-1509904882733-9f24c1a73c43?q=80&w=1924&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"; // Cloudy
-  if (code >= 45 && code <= 48) return "https://images.unsplash.com/photo-1487738468417-74f35351a637?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"; // Fog
-  if (code >= 51 && code <= 65) return "https://images.unsplash.com/photo-1534274988757-a28bf1a57c17?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"; // Rain
-  if (code >= 71 && code <= 75) return "https://images.unsplash.com/photo-1491002052546-bf38f186af56?q=80&w=2108&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"; // Snow
-  if (code >= 95 && code <= 99) return "https://images.unsplash.com/photo-1605727226424-e2ce1e411857?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"; // Thunderstorm
-  return "/thumbnail.jpeg";
+const getWeatherIcon = (code: number | undefined) => {
+  if (!code) return "☀️";
+  if (code >= 0 && code <= 1) return "☀️";
+  if (code >= 2 && code <= 3) return "⛅";
+  if (code >= 45 && code <= 48) return "🌫️";
+  if (code >= 51 && code <= 65) return "🌧️";
+  if (code >= 71 && code <= 75) return "🌨️";
+  if (code >= 95 && code <= 99) return "⛈️";
+  return "☀️";
 };
 
 export default function WeatherWidget() {
@@ -30,6 +29,7 @@ export default function WeatherWidget() {
   const [weather, setWeather] = useState<SimpleWeather | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [currentTime, setCurrentTime] = useState(new Date());
 
   useEffect(() => {
     const fetchWeather = async () => {
@@ -70,45 +70,76 @@ export default function WeatherWidget() {
     };
 
     fetchWeather();
+    
+    // Update time every minute
+    const timer = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 60000);
+
+    return () => clearInterval(timer);
   }, [t]);
 
+  const formatTime = (date: Date) => {
+    return date.toLocaleString('en-US', { 
+      weekday: 'long',
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true 
+    });
+  };
+
   return (
-    <Card
-      className="border-none shadow-md hover:shadow-lg transition-shadow bg-cover bg-center rounded-lg"
-      style={{ backgroundImage: `url(${getWeatherImage(weather?.weatherCode)})` }}
-    >
-      <div className="bg-black bg-opacity-40 rounded-lg p-6">
-        <CardHeader className="pb-2 p-0">
-          <CardTitle className="text-xl font-bold text-white">{t("current_weather")}</CardTitle>
+    <Card className="border-none shadow-lg bg-white/95 backdrop-blur-sm rounded-2xl overflow-hidden">
+      <div className="p-6">
+        <CardHeader className="pb-2 p-0 mb-4">
+          <div className="flex items-center justify-between">
+            <CardTitle className="text-xl font-bold text-gray-800">Weather</CardTitle>
+            <span className="text-sm text-gray-500">{formatTime(currentTime)}</span>
+          </div>
         </CardHeader>
-        <CardContent className="p-0 mt-2">
+        <CardContent className="p-0">
           {loading ? (
-            <div className="animate-pulse">
-              <div className="h-8 bg-gray-400 rounded w-24 mb-4"></div>
-              <div className="h-6 bg-gray-400 rounded w-32"></div>
+            <div className="animate-pulse space-y-4">
+              <div className="h-12 bg-gray-200 rounded w-1/3"></div>
+              <div className="h-8 bg-gray-200 rounded w-1/2"></div>
             </div>
           ) : error ? (
-            <div className="text-red-300">{error}</div>
+            <div className="text-red-500">{error}</div>
           ) : (
-            <>
-              <div className="flex items-center justify-between text-white">
+            <div className="space-y-6">
+              {/* Current Weather */}
+              <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-gray-200">{t("temperature")}</p>
-                  <p className="text-3xl font-bold">
-                    {weather?.temperatureC ?? "--"}°C
+                  <p className="text-6xl font-light text-gray-800">
+                    {weather?.temperatureC ?? "--"}°
                   </p>
-                  <p className="text-gray-200">{weather?.summary ?? t("partly_cloudy")}</p>
+                  <p className="text-gray-600 mt-1">{weather?.summary ?? "Light rain"}</p>
+                  <div className="flex items-center gap-4 mt-2 text-sm text-gray-500">
+                    <span>Precipitation: {weather?.precipitationChance ?? "--"}%</span>
+                    <span>•</span>
+                    <span>Humidity: {weather?.humidity ?? "--"}%</span>
+                    <span>•</span>
+                    <span>Wind: {weather?.windKph ?? "--"} km/h</span>
+                  </div>
+                </div>
+                <div className="text-4xl">
+                  {getWeatherIcon(weather?.weatherCode)}
                 </div>
               </div>
-              <div className="mt-4 flex justify-between text-sm text-gray-200">
-                <span>
-                  {t("humidity", { value: `${weather?.humidity ?? "--"}%` })}
-                </span>
-                <span>
-                  {t("wind_speed", { value: `${weather?.windKph ?? "--"} km/h` })}
-                </span>
+              
+              {/* Forecast */}
+              <div className="flex justify-between items-center pt-4 border-t border-gray-100">
+                {["Thu", "Fri", "Sat", "Sun"].map((day, i) => (
+                  <div key={day} className="text-center">
+                    <p className="text-sm text-gray-500">{day}</p>
+                    <p className="text-2xl mb-1">{getWeatherIcon(weather?.weatherCode)}</p>
+                    <p className="text-sm font-medium text-gray-800">
+                      {Math.round(weather?.temperatureC ?? 25) + i}°
+                    </p>
+                  </div>
+                ))}
               </div>
-            </>
+            </div>
           )}
         </CardContent>
       </div>
