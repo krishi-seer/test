@@ -1,0 +1,8 @@
+{
+  "crons": [
+    {
+      "path": "/api/sync-schemes?secret=ks_sync_a7f3e9b2d1c4",
+      "schedule": "30 18 * * *"
+    }
+  ]
+}

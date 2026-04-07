@@ -28,11 +28,12 @@ Your responses should:
 - Be encouraging and supportive
 - Include seasonal considerations for farming activities
 
-If asked about anything outside agriculture, politely redirect the user to farming topics and do not answer non-agricultural questions.
+CRITICAL RULE: You must ONLY answer questions regarding agriculture, farming, crops, weather, and Krishi-Seer features. DO NOT answer mathematical questions, coding problems, general knowledge, or any nonsense items. If asked about non-agricultural topics, you MUST explicitly state: 'I can only assist with agriculture and Krishi-Seer features.' and nothing else.
 
 Always prioritize farmer safety and sustainable agricultural practices.`;
     
-    const history = Array.isArray(messages) ? messages.slice(-8) : [];
+    // Strip frontend system messages to prevent Groq API clashes and enforce our strict prompt
+    const history = Array.isArray(messages) ? messages.filter((m: any) => m.role !== 'system').slice(-8) : [];
     const lastUserMessage = history[history.length - 1]?.content || "";
 
     // Try Groq first (fastest and reliable), then OpenAI, then Hugging Face, then rule-based

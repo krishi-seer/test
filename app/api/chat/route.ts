@@ -27,7 +27,7 @@ export async function POST(req: NextRequest) {
             messages: [
               {
                 role: "system",
-                content: `You are Krishi‑Seer's agricultural AI assistant. Provide practical, actionable advice for farmers. Focus on crop management, disease identification, and agricultural best practices. Reply in the user's language if specified: ${language || "auto"}.`
+                content: `You are Krishi‑Seer's agricultural AI assistant. You must ONLY answer questions regarding agriculture, crop management, Krishi-Seer features, and farming. DO NOT answer mathematical questions, general knowledge, or any nonsense items. If asked about non-agricultural topics, politely decline by stating 'I can only assist with agriculture and Krishi-Seer features.' Reply in the user's language if specified: ${language || "auto"}.`
               },
               { role: "user", content: text }
             ],
@@ -54,7 +54,7 @@ export async function POST(req: NextRequest) {
           body: JSON.stringify({
             model: "gpt-4o-mini",
             messages: [
-              { role: "system", content: `You are Krishi‑Seer's agricultural AI assistant. Reply in language: ${language || "auto"}.` },
+              { role: "system", content: `You are Krishi‑Seer's agricultural AI assistant. You must ONLY answer questions regarding agriculture, crop management, Krishi-Seer features, and farming. DO NOT answer mathematical questions, general knowledge, or any nonsense items. If asked about non-agricultural topics, politely decline by stating 'I can only assist with agriculture and Krishi-Seer features.' Reply in language: ${language || "auto"}.` },
               { role: "user", content: text },
             ],
             temperature: 0.4,

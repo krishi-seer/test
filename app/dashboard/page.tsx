@@ -152,7 +152,7 @@ const DashboardPage = () => {
         </Card>
       </div>
 
-      <div className="grid grid-cols-2 gap-4 mt-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mt-6">
         <Button asChild variant="outline" className="flex flex-col items-center justify-center h-20 border-2 border-green-200 text-green-700 hover:bg-green-50">
           <a href="/irrigation">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 mb-1">
@@ -168,6 +168,15 @@ const DashboardPage = () => {
               <path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
             </svg>
             <span className="text-xs font-medium">Fertilizer AI</span>
+          </a>
+        </Button>
+
+        <Button asChild variant="outline" className="flex flex-col items-center justify-center h-20 border-2 border-green-200 text-green-700 hover:bg-green-50">
+          <a href="/features/document-extractor">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6 mb-1">
+              <path d="M12 4v1m-3.322-.053l.33.945m7.34-.945l-.328.945M4 12h1m14 0h1m-1.053 3.322l-.945-.33m-11.945.33l.945-.33M4 19h16M4 5h16M7 8h10M7 12h10M7 16h10" />
+            </svg>
+            <span className="text-xs font-medium">{t("doc_scanner")}</span>
           </a>
         </Button>
 

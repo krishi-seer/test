@@ -136,6 +136,17 @@ export default function HomePage() {
                 </div>
               </Link>
 
+              <Link href="/features/document-extractor" className="group">
+                <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 text-center shadow-lg border border-white/20 hover:shadow-xl transition-all duration-300 transform hover:scale-110 hover:-translate-y-2">
+                  <div className="w-12 h-12 bg-gradient-to-r from-amber-400 to-amber-600 rounded-xl flex items-center justify-center mx-auto mb-3">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v1m-3.322-.053l.33.945m7.34-.945l-.328.945M4 12h1m14 0h1m-1.053 3.322l-.945-.33m-11.945.33l.945-.33M4 19h16M4 5h16M7 8h10M7 12h10M7 16h10" />
+                    </svg>
+                  </div>
+                  <span className="text-sm font-medium text-gray-800">{t("doc_scanner")}</span>
+                </div>
+              </Link>
+
               <Link href="/community" className="group">
                 <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 text-center shadow-lg border border-white/20 hover:shadow-xl transition-all duration-300 transform hover:scale-110 hover:-translate-y-2">
                   <div className="w-12 h-12 bg-gradient-to-r from-orange-400 to-orange-600 rounded-xl flex items-center justify-center mx-auto mb-3">

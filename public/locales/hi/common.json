@@ -110,5 +110,10 @@
   "chatbot_note": "यह एक डेमो UI है। लाइव करने के लिए LLM बैकएंड जोड़ें।",
   "ai_advice": "एआई सलाह",
   "ai_advice_summary": "एआई सलाह",
-  "photo_tip_instruction": "फसल स्पष्ट दिखे और रोशनी अच्छी हो।"
+  "photo_tip_instruction": "फसल स्पष्ट दिखे और रोशनी अच्छी हो।",
+  "doc_scanner": "डॉक स्कैनर",
+  "doc_scanner_desc": "सिफारिशों के लिए मृदा स्वास्थ्य कार्ड स्कैन करें।",
+  "ai_match": "एआई मैच",
+  "force_sync": "जबरन सिंक",
+  "archived": "संग्रहीत"
 }
