@@ -122,5 +122,6 @@
   "doc_scanner_desc": "Scan Soil Health Cards for recommendations.",
   "ai_match": "AI Match",
   "force_sync": "Force Sync",
-  "archived": "Archived"
+  "archived": "Archived",
+  "last_verified_label": "Last Verified"
 }

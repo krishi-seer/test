@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
       return Response.json({ error: "Image required" }, { status: 400 });
     }
 
-    // Step 1: Extract Soil Data using Vision AI
+    // Step 1: Extract Soil Data using Vision AI (Elite Model Upgrade)
     const visionRes = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
@@ -32,34 +32,58 @@ export async function POST(req: NextRequest) {
         Authorization: `Bearer ${OPENAI_API_KEY}`,
       },
       body: JSON.stringify({
-        model: "gpt-4o-mini",
+        model: "gpt-4o",
         messages: [
           {
             role: "system",
-            content: `You are an expert Soil Chemist. Analyze the provided Soil Health Card image.
-            Extract: Nitrogen (N), Phosphorus (P), Potassium (K), pH Level, Organic Carbon (OC).
-            Provide fertilizer recommendations based on the soil health.
-            Return JSON only: { "metrics": { "N": "", "P": "", "K": "", "pH": "", "OC": "" }, "recommendation": "", "suggested_fertilizers": [] }`
+            content: `You are an elite Soil Scientist and Document OCR expert for the Indian Ministry of Agriculture. 
+            Analyze the provided image of a Soil Health Card (SHC). 
+            
+            1. OCR Extraction: Look for values of Nitrogen (N), Phosphorus (P), Potassium (K), pH Level, and Organic Carbon (OC). 
+            Note: Labels may be in Hindi (नाइट्रोजन, फास्फोरस, पोटाश) or Odia (ନାଇଟ୍ରୋଜେନ୍, ଫସଫରସ୍).
+            
+            2. Scientific Insight: Based on these levels, provide a concise fertilizer recommendation (1-2 sentences) in simple farmer-friendly language.
+            
+            3. Actionable List: List 3-4 specific fertilizer names (e.g., Urea, DAP, MOP, SSP).
+
+            Return ONLY a valid JSON object:
+            {
+              "metrics": { "N": "Value + Unit", "P": "Value + Unit", "K": "Value + Unit", "pH": "Value", "OC": "Value + %" },
+              "recommendation": "Simple advice here...",
+              "suggested_fertilizers": ["Urea", "DAP", "etc"]
+            }
+            
+            If the image is not a Soil Health Card, return error: "INVALID_DOCUMENT"`
           },
           {
             role: "user",
             content: [
-              { type: "text", text: "Parse this Soil Health Card and extract key metrics and recommendations." },
+              { type: "text", text: "Extract metrics and recommendations from this Soil Health Card image." },
               { type: "image_url", image_url: { url: image } }
             ]
           }
         ],
-        max_tokens: 500,
+        max_tokens: 1000,
         response_format: { type: "json_object" }
       }),
     });
 
     if (!visionRes.ok) {
-      return Response.json({ error: "Vision AI Analysis Failed" }, { status: 500 });
+      const errorData = await visionRes.json().catch(() => ({}));
+      return Response.json({ 
+        error: "Vision AI Analysis Failed", 
+        details: errorData?.error?.message || visionRes.statusText 
+      }, { status: 500 });
     }
 
     const visionData = await visionRes.json();
-    const extraction = JSON.parse(visionData.choices[0].message.content);
+    const content = JSON.parse(visionData.choices[0].message.content);
+
+    if (content.error === "INVALID_DOCUMENT") {
+      return Response.json({ error: "The provided image does not look like a Soil Health Card. Please upload a clearer document." }, { status: 400 });
+    }
+
+    const extraction = content;
 
     // Step 2: Cross-reference with Schemes DB for subsidies
     // Look for tags like 'soil', 'fertilizer'

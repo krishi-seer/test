@@ -156,34 +156,50 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // Step 4: Archive check — verify existing schemes with source URLs
-    const schemesWithUrls = existing.filter(
-      (e: any) => e.source_url && !e.archived
-    );
-
-    // Check a batch of up to 10 URLs to avoid timeout
-    const toCheck = schemesWithUrls.slice(0, 10);
+    // Step 4: Archive check — verify existing active schemes for link health
+    // This is the "Main Aim": Cleanup dead or expired links
+    const activeSchemes = existing.filter((e: any) => !e.archived);
+    
+    // We check a batch of up to 20 per sync to ensure the whole DB stays fresh
+    const toCheck = activeSchemes.slice(0, 20);
+    
     for (const scheme of toCheck) {
-      const alive = await checkUrlAlive(scheme.source_url);
-      if (!alive) {
-        const { error: archiveErr } = await supabase
-          .from("schemes_insert")
-          .update({
-            archived: true,
-            archived_reason: "source_404",
-            last_verified: new Date().toISOString(),
-          })
-          .eq("id", scheme.id);
+      const urlToTest = scheme.source_url || scheme.url;
+      if (!urlToTest) continue;
 
-        if (!archiveErr) {
-          summary.archived++;
-          logs.push({
-            action: "ARCHIVE",
-            scheme_name: scheme.name || scheme.scheme_name,
-            details: { reason: "source_404", url: scheme.source_url },
-            source: "sync",
-          });
+      const alive = await checkUrlAlive(urlToTest);
+      
+      if (!alive) {
+        // Double check: If it failed, try once more after a short delay
+        const retryAlive = await checkUrlAlive(urlToTest);
+        
+        if (!retryAlive) {
+          const { error: archiveErr } = await supabase
+            .from("schemes_insert")
+            .update({
+              archived: true,
+              archived_reason: "broken_link",
+              last_verified: new Date().toISOString(),
+            })
+            .eq("id", scheme.id);
+
+          if (!archiveErr) {
+            summary.archived++;
+            logs.push({
+              action: "ARCHIVE",
+              scheme_name: scheme.name || scheme.scheme_name,
+              details: { reason: "broken_link", url: urlToTest },
+              source: "sync_cleanup",
+            });
+          }
         }
+      } else {
+        // It's alive! Update the last_verified timestamp for the UI
+        await supabase
+          .from("schemes_insert")
+          .update({ last_verified: new Date().toISOString() })
+          .eq("id", scheme.id);
+        summary.verified++;
       }
     }
 

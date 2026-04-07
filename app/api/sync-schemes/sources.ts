@@ -16,37 +16,44 @@ export type RawScheme = {
 // Known government scheme source pages
 const GOV_SOURCES = [
   {
-    id: "agricoop",
-    name: "Ministry of Agriculture & Farmers Welfare",
-    url: "https://agricoop.nic.in/en/schemes",
-    fallbackUrl: "https://agricoop.gov.in/en/schemes",
+    id: "agriwelfare",
+    name: "Ministry of Agriculture & Farmers Welfare (Main)",
+    url: "https://agriwelfare.gov.in/en/Schemes",
+    fallbackUrl: "https://agricoop.nic.in/en/schemes",
+  },
+  {
+    id: "myscheme_agri",
+    name: "myScheme - Agriculture (Central)",
+    url: "https://www.myscheme.gov.in/search/category/Agriculture",
   },
   {
     id: "pmkisan",
     name: "PM-KISAN Portal",
     url: "https://pmkisan.gov.in",
-    fallbackUrl: "https://pmkisan.gov.in/Home.aspx",
   },
   {
-    id: "krishionnati",
-    name: "Krishionnati Yojana",
-    url: "https://agricoop.nic.in/en/schemes/krishionnati-yojana",
-    fallbackUrl: "https://agricoop.gov.in/en/schemes",
+    id: "dbt_bihar",
+    name: "Bihar DBT Agriculture",
+    url: "https://dbtagriculture.bihar.gov.in",
   },
   {
-    id: "mospi",
-    name: "MoSPI e-Sankhyiki",
-    url: "https://www.mospi.gov.in/publication/statistical-year-book-india",
-    fallbackUrl: "https://www.mospi.gov.in",
+    id: "agri_odisha",
+    name: "Odisha Agriculture Portal",
+    url: "https://agri.odisha.gov.in",
+  },
+  {
+    id: "up_agri",
+    name: "UP Agriculture Portal",
+    url: "https://upagriculture.com",
   },
 ];
 
 // Well-known active schemes as a baseline (used when scraping fails)
 const KNOWN_SCHEMES: RawScheme[] = [
+  // --- CENTRAL SCHEMES ---
   {
     name: "PM-KISAN Samman Nidhi",
-    description:
-      "Direct income support of ₹6,000 per year to eligible farmer families in three equal installments of ₹2,000 each.",
+    description: "Direct income support of ₹6,000 per year to eligible farmer families in three equal installments of ₹2,000 each.",
     url: "https://pmkisan.gov.in",
     tags: ["income", "all_crops", "central"],
     state: "all",
@@ -54,100 +61,219 @@ const KNOWN_SCHEMES: RawScheme[] = [
   },
   {
     name: "Pradhan Mantri Fasal Bima Yojana (PMFBY)",
-    description:
-      "Crop insurance scheme providing financial support to farmers suffering crop loss due to natural calamities, pests, and diseases.",
+    description: "Crop insurance scheme providing financial support to farmers suffering crop loss due to natural calamities, pests, and diseases.",
     url: "https://pmfby.gov.in",
-    tags: ["insurance", "wheat", "rice", "maize", "all_crops", "central"],
+    tags: ["insurance", "all_crops", "central"],
     state: "all",
     active: true,
   },
   {
     name: "Soil Health Card Scheme",
-    description:
-      "Provides soil health cards to farmers with crop-wise nutrient recommendations for improving productivity through judicious use of inputs.",
+    description: "Provides soil health cards to farmers with crop-wise nutrient recommendations for improving productivity through judicious use of inputs.",
     url: "https://soilhealth.dac.gov.in",
     tags: ["soil", "fertilizer", "central"],
     state: "all",
     active: true,
   },
   {
-    name: "Krishionnati Yojana",
-    description:
-      "Umbrella scheme for holistic development of agriculture including Mission for Integrated Development of Horticulture (MIDH) and National Food Security Mission (NFSM).",
-    url: "https://agricoop.nic.in/en/schemes/krishionnati-yojana",
-    tags: ["wheat", "rice", "maize", "horticulture", "central"],
+    name: "Kisan Credit Card (KCC)",
+    description: "Timely and affordable short-term credit for crop production and allied activities at subsidized interest rates.",
+    url: "https://agriwelfare.gov.in/en/KCC",
+    tags: ["income", "market", "central"],
     state: "all",
     active: true,
   },
   {
     name: "Paramparagat Krishi Vikas Yojana (PKVY)",
-    description:
-      "Promotes organic farming through adoption of organic village clusters. Farmers receive ₹50,000/ha over 3 years for organic inputs and certification.",
-    url: "https://pgsindia-ncof.gov.in/pkvy/index.aspx",
+    description: "Promotes organic farming through cluster-based approaches and financial assistance for organic inputs and certification.",
+    url: "https://pkvy.org",
     tags: ["organic", "soil", "central"],
     state: "all",
     active: true,
   },
   {
-    name: "Micro Irrigation Fund (MIF)",
-    description:
-      "Facilitates micro irrigation (drip and sprinkler) with subsidies up to 55% for small farmers to improve water use efficiency.",
+    name: "PM Krishi Sinchayee Yojana (PMKSY)",
+    description: "Focuses on 'More Crop Per Drop' through micro-irrigation (drip/sprinkler) to enhance water-use efficiency.",
     url: "https://pmksy.gov.in",
     tags: ["irrigation", "water", "central"],
     state: "all",
     active: true,
   },
   {
-    name: "National Mission on Oilseeds and Oil Palm (NMOOP)",
-    description:
-      "Aims to increase production of oilseeds and oil palm through area expansion, productivity improvement, and seed distribution.",
-    url: "https://agricoop.nic.in/en/schemes/nmoop",
-    tags: ["mustard", "oilseed", "central"],
+    name: "Agriculture Infrastructure Fund (AIF)",
+    description: "Financing for post-harvest infrastructure like cold storage and warehouses with 3% interest subvention.",
+    url: "https://agriinfra.dac.gov.in",
+    tags: ["market", "infrastructure", "central"],
     state: "all",
     active: true,
   },
   {
-    name: "Kalia Yojana (Odisha)",
-    description:
-      "Krushak Assistance for Livelihood and Income Augmentation — provides ₹10,000 per family for small/marginal farmers in Odisha for cultivation assistance.",
+    name: "National Food Security Mission (NFSM)",
+    description: "Aims to increase production of rice, wheat, and pulses through area expansion and productivity improvement.",
+    url: "https://nfsm.gov.in",
+    tags: ["wheat", "rice", "central"],
+    state: "all",
+    active: true,
+  },
+  {
+    name: "Nutri-Cereals Mission (Millets)",
+    description: "Promotes production and consumption of millets (Jowar, Bajra, Ragi) for nutritional security and farmer income.",
+    url: "https://agriwelfare.gov.in",
+    tags: ["maize", "all_crops", "central"],
+    state: "all",
+    active: true,
+  },
+  {
+    name: "Rainfed Area Development (RAD)",
+    description: "Focuses on integrated farming systems (Crops + Livestock/Trees) in rainfed areas to mitigate climate risks.",
+    url: "https://nmsa.dac.gov.in",
+    tags: ["soil", "all_crops", "central"],
+    state: "all",
+    active: true,
+  },
+  {
+    name: "PM-PRANAM Scheme",
+    description: "Innovative incentive scheme for states to promote balanced fertilizer use and reduce chemical fertilizer consumption.",
+    url: "https://fert.nic.in",
+    tags: ["fertilizer", "soil", "central"],
+    state: "all",
+    active: true,
+  },
+  {
+    name: "e-NAM (National Agriculture Market)",
+    description: "Unified national market for agricultural commodities through an electronic trading portal networking APMC mandis.",
+    url: "https://enam.gov.in",
+    tags: ["market", "all_crops", "central"],
+    state: "all",
+    active: true,
+  },
+  {
+    name: "Digital Agriculture Mission",
+    description: "Integration of AI, IoT, and data analytics for precision farming and digital crop estimation.",
+    url: "https://agriwelfare.gov.in",
+    tags: ["market", "all_crops", "central"],
+    state: "all",
+    active: true,
+  },
+
+  // --- ODISHA SCHEMES ---
+  {
+    name: "KALIA Scheme (Odisha)",
+    description: "Krushak Assistance for Livelihood and Income Augmentation — financial support for small/marginal farmers.",
     url: "https://kalia.odisha.gov.in",
     tags: ["income", "rice", "all_crops"],
     state: "odisha",
     active: true,
   },
   {
-    name: "Mukhyamantri Krishi Ashirwad Yojana (Jharkhand)",
-    description:
-      "Provides ₹5,000 per acre (up to 5 acres) to small and marginal farmers for Kharif crop cultivation.",
-    url: "https://mmkay.jharkhand.gov.in",
-    tags: ["income", "rice", "wheat"],
-    state: "jharkhand",
+    name: "BALARAM Scheme (Odisha)",
+    description: "Provides collateral-free farm loans to landless sharecroppers and tenant farmers through Joint Liability Groups.",
+    url: "https://agri.odisha.gov.in",
+    tags: ["income", "market", "rice"],
+    state: "odisha",
     active: true,
   },
   {
-    name: "UP Krishi Yantra Subsidy Yojana",
-    description:
-      "Provides 50% subsidy on agricultural equipment for farmers in Uttar Pradesh including tractors, pump sets, and sprayers.",
-    url: "https://upagriculture.com",
-    tags: ["equipment", "wheat", "rice", "mustard"],
-    state: "up",
+    name: "Odisha Millet Mission",
+    description: "Promotion of millet cultivation, processing, and marketing to improve nutrition and local economies.",
+    url: "https://millets.odisha.gov.in",
+    tags: ["maize", "all_crops"],
+    state: "odisha",
     active: true,
   },
   {
-    name: "Bihar Krishi Input Subsidy Scheme",
-    description:
-      "Provides ₹6,800 per hectare for irrigated land and ₹13,500 for rain-fed crop loss due to floods, drought, or hailstorm in Bihar.",
+    name: "Krushi Yantra Subsidy (Odisha)",
+    description: "Subsidies for agricultural machinery like tractors, power tillers, and pump sets for Odisha farmers.",
+    url: "https://agri.odisha.gov.in",
+    tags: ["equipment", "all_crops"],
+    state: "odisha",
+    active: true,
+  },
+
+  // --- BIHAR SCHEMES ---
+  {
+    name: "Bihar Krishi Input Subsidy",
+    description: "Financial assistance for crop loss due to natural calamities like floods, drought, and hailstorm.",
     url: "https://dbtagriculture.bihar.gov.in",
-    tags: ["insurance", "wheat", "rice", "maize"],
+    tags: ["insurance", "wheat", "rice"],
     state: "bihar",
     active: true,
   },
   {
-    name: "e-NAM (National Agriculture Market)",
-    description:
-      "Pan-India electronic trading portal networking existing APMC mandis to create unified national market for agricultural commodities.",
-    url: "https://enam.gov.in",
-    tags: ["market", "all_crops", "central"],
+    name: "Bihar Seed Subsidy Scheme",
+    description: "Provides high-quality seeds at subsidized rates for Kharif and Rabi seasons to Bihar farmers.",
+    url: "https://dbtagriculture.bihar.gov.in",
+    tags: ["soil", "rice", "wheat"],
+    state: "bihar",
+    active: true,
+  },
+  {
+    name: "Bihar Diesel Grant Scheme",
+    description: "Subsidy for irrigation costs using diesel pump sets during drought-like conditions.",
+    url: "https://dbtagriculture.bihar.gov.in",
+    tags: ["irrigation", "rice", "wheat"],
+    state: "bihar",
+    active: true,
+  },
+
+  // --- UP SCHEMES ---
+  {
+    name: "UP Solar Pump Subsidy",
+    description: "Provides up to 60-90% subsidy for installation of surface and deep-well solar pump sets.",
+    url: "https://upagriculture.com/solar_pump",
+    tags: ["irrigation", "equipment"],
+    state: "up",
+    active: true,
+  },
+  {
+    name: "UP Krishi Yantra Subsidy",
+    description: "Subsidies for small and big agricultural equipment for modernization of farming in UP.",
+    url: "https://upagriculture.com",
+    tags: ["equipment", "wheat", "mustard"],
+    state: "up",
+    active: true,
+  },
+  {
+    name: "UP Seed Distribution Scheme",
+    description: "Focused on distribution of hybrid seeds for increased yield in wheat and rice clusters.",
+    url: "https://upagriculture.com",
+    tags: ["soil", "wheat", "rice"],
+    state: "up",
+    active: true,
+  },
+
+  // --- JHARKHAND SCHEMES ---
+  {
+    name: "Jharkhand Farm Loan Waiver",
+    description: "Relief for farmers by waiving agricultural loans up to ₹50,000 for small and marginal landholders.",
+    url: "https://agriculture.jharkhand.gov.in",
+    tags: ["income", "market"],
+    state: "jharkhand",
+    active: true,
+  },
+  {
+    name: "Jharkhand Millet Mission",
+    description: "Reviving traditional crops and ensuring nutritional security through millet promotion.",
+    url: "https://agriculture.jharkhand.gov.in",
+    tags: ["maize", "horticulture"],
+    state: "jharkhand",
+    active: true,
+  },
+
+  // --- HORTICULTURE & MULTI-STATE ---
+  {
+    name: "Mission for Integrated Development of Horticulture (MIDH)",
+    description: "Holistic growth of fruit, vegetable, and spice production through new nurseries and post-harvest management.",
+    url: "https://midh.gov.in",
+    tags: ["horticulture", "soil", "central"],
+    state: "all",
+    active: true,
+  },
+  {
+    name: "National Mission on Oilseeds and Oil Palm",
+    description: "Boosting production of mustard, soyabean, and oil palm to reduce import dependency.",
+    url: "https://agriwelfare.gov.in",
+    tags: ["mustard", "oilseed", "central"],
     state: "all",
     active: true,
   },
@@ -198,21 +324,49 @@ async function fetchSourceText(url: string, fallbackUrl?: string): Promise<strin
 
 /**
  * Check if a URL is still live (not 404).
+ * Improved to handle redirects and verify both HEAD and GET if needed.
  */
 export async function checkUrlAlive(url: string): Promise<boolean> {
   try {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 8000);
+    
+    // First try a HEAD request (fastest)
     const res = await fetch(url, {
       method: "HEAD",
       signal: controller.signal,
       headers: {
-        "User-Agent": "Mozilla/5.0 (compatible; KrishiSeer/1.0)",
+        "User-Agent": "Mozilla/5.0 (compatible; KrishiSeer-Verifier/1.0; link health check)",
       },
     });
+    
     clearTimeout(timeout);
-    return res.ok || res.status === 301 || res.status === 302;
-  } catch {
+    
+    // Success on 200s and 300s
+    if (res.ok || (res.status >= 300 && res.status < 400)) return true;
+    
+    // If HEAD fails (some gov sites block it), try a GET with range header
+    if (res.status === 405 || res.status === 403 || res.status === 401 || res.status === 404) {
+      const getController = new AbortController();
+      const getTimeout = setTimeout(() => getController.abort(), 10000);
+      try {
+        const getRes = await fetch(url, {
+          method: "GET",
+          signal: getController.signal,
+          headers: {
+            "User-Agent": "Mozilla/5.0 (compatible; KrishiSeer-Verifier/1.0)",
+            "Range": "bytes=0-10", // Only fetch first 10 bytes to be polite
+          },
+        });
+        clearTimeout(getTimeout);
+        return getRes.ok || getRes.status === 206 || getRes.status === 403; // Some sites return 403 even for GET but are "alive"
+      } catch {
+        return false;
+      }
+    }
+
+    return false;
+  } catch (err) {
     return false;
   }
 }

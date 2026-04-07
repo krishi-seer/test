@@ -36,7 +36,10 @@ export default function DocumentExtractorPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ image: photo })
       });
-      if (!resp.ok) throw new Error("Vision AI analysis failed. Please try a clearer photo.");
+      if (!resp.ok) {
+        const errorData = await resp.json().catch(() => ({}));
+        throw new Error(errorData.error || "Vision AI analysis failed. Please try a clearer photo.");
+      }
       const data = await resp.json();
       setResult(data);
     } catch (err: any) {

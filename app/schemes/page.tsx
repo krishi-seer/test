@@ -354,6 +354,11 @@ export default function SchemesPage() {
             <option value="bihar">Bihar</option>
             <option value="up">Uttar Pradesh</option>
             <option value="jharkhand">Jharkhand</option>
+            <option value="mp">Madhya Pradesh</option>
+            <option value="haryana">Haryana</option>
+            <option value="punjab">Punjab</option>
+            <option value="rajasthan">Rajasthan</option>
+            <option value="maharashtra">Maharashtra</option>
             <option value="all">All India (Central)</option>
           </select>
           <div className="text-xs text-gray-500 mt-1">Pick a state or "All".</div>
@@ -417,8 +422,9 @@ export default function SchemesPage() {
                   </Button>
                 )}
                 {s.last_verified && (
-                  <span className="text-[10px] text-gray-400 italic">
-                    Verified {formatSyncTime(s.last_verified)}
+                  <span className="text-[10px] text-gray-500 italic flex flex-col items-end">
+                    <span>{t("last_verified_label")}</span>
+                    <span>{formatSyncTime(s.last_verified)}</span>
                   </span>
                 )}
               </div>
