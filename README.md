@@ -16,6 +16,7 @@ An innovative agricultural intelligence platform that empowers farmers with AI-d
 - [📊 Predictive Forecasting](#-predictive-forecasting)
 - [🗣️ Multilingual Advisory](#-multilingual-advisory)
 - [🛠 Project Architecture](#-project-architecture)
+- [📚 Project Report](PROJECT_REPORT.md)
 
 ---
 
@@ -50,3 +51,7 @@ A proprietary background engine that maintains a comprehensive database of **50+
 ---
 
 **Empowering Indian agriculture through autonomous AI and deep data transparency.** 🌾🚀🛰️
+
+## 📚 Project Report
+
+Full technical project report and architecture notes are available in [PROJECT_REPORT.md](PROJECT_REPORT.md).

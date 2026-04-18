@@ -6,7 +6,6 @@ import { Providers } from "@/lib/providers";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import SideMenu from "@/components/SideMenu";
 import Link from "next/link";
-
 const inter = Inter({ 
   subsets: ["latin"], 
   display: "swap",

@@ -50,7 +50,7 @@ export default function CommunityPage() {
       <div className="p-4 flex justify-between items-center">
         <p>{t("loading_farmers")}</p>
         {!session ? (
-          <a href="/login" className="text-green-600 hover:underline">{t("log_in")}</a>
+          <a href="/face-login" className="text-green-600 hover:underline">{t("log_in")}</a>
         ) : (
           <a href="/dashboard" className="text-green-600 hover:underline">{t("dashboard")}</a>
         )}
@@ -79,7 +79,7 @@ export default function CommunityPage() {
         <h1 className="text-2xl font-bold">{t("community_title")}</h1>
         <div className="flex items-center gap-3">
           {!session ? (
-            <Button asChild variant="outline"><a href="/login">{t("log_in")}</a></Button>
+            <Button asChild variant="outline"><a href="/face-login">{t("log_in")}</a></Button>
           ) : (
             <>
               <Button asChild variant="outline"><a href="/dashboard">{t("dashboard")}</a></Button>

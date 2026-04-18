@@ -1,0 +1,6 @@
+{
+  "name": "Krishi-Seer Zero-Type Login",
+  "description": "Zero-type login and voice-guided onboarding for farmers using face recognition and multilingual speech-to-text.",
+  "requestFramePermissions": ["camera", "microphone"],
+  "majorCapabilities": []
+}
