@@ -64,7 +64,7 @@ export default function FaceLoginPage() {
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between text-center sm:text-left mb-8 gap-4">
           <div>
             <div className="mb-4 inline-block">
-              <div className="text-5xl">🌾</div>
+              <div className="text-5xl text-green-600 font-bold">K</div>
             </div>
             <h1 className="text-4xl font-bold text-green-900 mb-2">
               {t('face_login.welcome_title')}
@@ -114,12 +114,12 @@ export default function FaceLoginPage() {
           {/* Features */}
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="text-center">
-              <div className="text-4xl mb-2">🌱</div>
+              <div className="text-4xl mb-2">K</div>
               <h3 className="font-semibold text-green-900 mb-1">फसल सलाह</h3>
               <p className="text-sm text-green-700">बेहतर उपज के लिए विशेषज्ञ सलाह</p>
             </div>
             <div className="text-center">
-              <div className="text-4xl mb-2">📊</div>
+              <div className="text-4xl mb-2">S</div>
               <h3 className="font-semibold text-green-900 mb-1">मौसम पूर्वानुमान</h3>
               <p className="text-sm text-green-700">सटीक मौसम जानकारी</p>
             </div>

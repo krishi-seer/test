@@ -6,7 +6,7 @@ const ResearchAndReferencesPage = () => {
     <div className="min-h-screen bg-gradient-to-br from-green-50 to-blue-50 p-4">
       {/* Header */}
       <div className="bg-gradient-to-r from-green-500 to-blue-600 rounded-2xl p-6 text-white shadow-lg mb-6">
-        <h1 className="text-4xl font-bold mb-2">📚 Research & References</h1>
+        <h1 className="text-4xl font-bold mb-2">Research & References</h1>
         <p className="text-green-100 text-lg">SIH 2025 - Krishi-Seer Agricultural Platform</p>
       </div>
 

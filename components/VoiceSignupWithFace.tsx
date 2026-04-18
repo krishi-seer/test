@@ -118,7 +118,7 @@ export default function VoiceSignupWithFace() {
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <span className="text-3xl">🌾</span>
+              <span className="text-3xl">K</span>
               <div>
                 <p className="text-sm text-gray-600">फसलें</p>
                 <p className="text-xl font-semibold text-green-900">{signupData.crops}</p>

@@ -114,7 +114,7 @@ const DemoPage = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <Card className="border-none shadow-md">
               <CardHeader>
-                <CardTitle className="text-xl font-bold text-gray-800">📊 Demo Highlights</CardTitle>
+                <CardTitle className="text-xl font-bold text-gray-800">Demo Highlights</CardTitle>
               </CardHeader>
               <CardContent>
                 <ul className="space-y-3">
@@ -177,7 +177,7 @@ const DemoPage = () => {
           <Card className="border-none shadow-md bg-gradient-to-r from-green-50 to-blue-50">
             <CardContent className="p-6 text-center">
               <h3 className="text-2xl font-bold text-gray-800 mb-3">
-                Ready to Transform Your Farming? 🌾
+                Ready to Transform Your Farming?
               </h3>
               <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
                 Join thousands of farmers already using Krishi-Seer to optimize their agricultural practices 

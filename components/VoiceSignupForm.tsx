@@ -241,7 +241,7 @@ export default function VoiceSignupForm({ onComplete, hideSubmit = false }: Voic
       <div className="min-h-screen bg-gradient-to-b from-green-50 via-amber-50 to-orange-50 flex items-center justify-center p-6">
         <div className="text-center max-w-md">
           <div className="mb-6 animate-bounce">
-            <div className="text-6xl">🌾</div>
+            <div className="text-6xl">K</div>
           </div>
           <h1 className="text-3xl font-bold text-green-900 mb-2">
             स्वागत है! Welcome!
@@ -456,9 +456,9 @@ export default function VoiceSignupForm({ onComplete, hideSubmit = false }: Voic
               {SIGNUP_STEPS.map(step => farmer[step.field] && (
                 <div key={step.id} className="flex items-center gap-3 p-3 bg-green-50 rounded-xl">
                   <span className="text-2xl">
-                    {step.field === 'name' ? '👤' : 
-                     step.field === 'mobile' ? '📱' :
-                     step.field === 'location' ? '📍' : '🌾'}
+                    {step.field === 'name' ? 'N' : 
+                     step.field === 'mobile' ? 'M' :
+                     step.field === 'location' ? 'L' : 'C'}
                   </span>
                   <div>
                     <p className="text-xs text-gray-600 font-medium">{getStepLabel(step)}</p>

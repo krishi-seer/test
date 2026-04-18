@@ -140,7 +140,7 @@ const ContactPage = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <Card className="border-none shadow-md text-center">
           <CardContent className="pt-6">
-            <div className="text-3xl mb-3">🚀</div>
+            <div className="text-3xl mb-3">K</div>
             <h3 className="font-semibold text-gray-800 mb-2">Project Status</h3>
             <p className="text-sm text-gray-600">
               Active development for SIH 2025. Currently implementing advanced AI features for agricultural optimization.
@@ -208,7 +208,7 @@ const ContactPage = () => {
               <div className="font-medium">i18n</div>
             </div>
             <div className="text-center p-3 bg-gray-50 rounded-lg">
-              <div className="text-2xl mb-2">📊</div>
+              <div className="text-2xl mb-2">S</div>
               <div className="font-medium">Recharts</div>
             </div>
           </div>

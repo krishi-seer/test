@@ -259,7 +259,7 @@ export default function ProfilePage() {
             <div className="space-y-4 pt-6 border-t border-gray-200">
               <Button asChild className="w-full bg-gradient-to-r from-green-500 via-blue-500 to-purple-500 hover:from-green-600 hover:via-blue-600 hover:to-purple-600 text-white py-3 rounded-xl shadow-lg transition-all duration-300 hover:shadow-xl">
                 <a href="/dashboard" className="flex items-center justify-center space-x-2">
-                  <span className="text-lg">📊</span>
+                  <span className="text-lg">S</span>
                   <span className="font-semibold">Go to Dashboard</span>
                 </a>
               </Button>
