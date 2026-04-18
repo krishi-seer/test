@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { supabaseAdmin } from '@/lib/supabaseAdmin';
+import { getSupabaseAdmin } from '@/lib/supabaseAdmin';
 
 interface FaceEmbeddingRequest {
   embedding: number[];
@@ -8,6 +8,8 @@ interface FaceEmbeddingRequest {
 
 export async function POST(req: NextRequest) {
   try {
+    const supabaseAdmin = getSupabaseAdmin();
+
     const body: FaceEmbeddingRequest = await req.json();
 
     // Validate input
