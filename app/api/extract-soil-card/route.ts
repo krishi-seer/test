@@ -1,111 +1,114 @@
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
+import Groq from "groq-sdk";
 import { createClient } from "@supabase/supabase-js";
 
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+const GROQ_API_KEY = process.env.GROQ_API_KEY;
 const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const SUPABASE_KEY = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
+const groq = new Groq({ apiKey: GROQ_API_KEY });
 const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
 
-/**
- * POST /api/extract-soil-card
- *
- * Vision AI Document Extractor:
- * 1. Accepts a base64 image or image URL.
- * 2. Uses GPT-4o-mini to extract soil metrics (N, P, K, pH, OC).
- * 3. Recommends fertilizers.
- * 4. Searches the `schemes_insert` table for matching subsidies.
- */
+function normalizeImageUrl(image: string) {
+  if (typeof image !== "string") return "";
+  if (image.startsWith("data:image/")) return image;
+  if (image.startsWith("http://") || image.startsWith("https://")) return image;
+  return image;
+}
+
 export async function POST(req: NextRequest) {
   try {
-    const { image } = await req.json(); // base64 data url or image url
+    const { image } = await req.json();
 
-    if (!image) {
-      return Response.json({ error: "Image required" }, { status: 400 });
+    if (!image || typeof image !== "string") {
+      return NextResponse.json({ error: "Image required" }, { status: 400 });
     }
 
-    // Step 1: Extract Soil Data using Vision AI (Elite Model Upgrade)
-    const visionRes = await fetch("https://api.openai.com/v1/chat/completions", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${OPENAI_API_KEY}`,
-      },
-      body: JSON.stringify({
-        model: "gpt-4o",
-        messages: [
-          {
-            role: "system",
-            content: `You are an elite Soil Scientist and Document OCR expert for the Indian Ministry of Agriculture. 
-            Analyze the provided image of a Soil Health Card (SHC). 
-            
-            1. OCR Extraction: Look for values of Nitrogen (N), Phosphorus (P), Potassium (K), pH Level, and Organic Carbon (OC). 
-            Note: Labels may be in Hindi (नाइट्रोजन, फास्फोरस, पोटाश) or Odia (ନାଇଟ୍ରୋଜେନ୍, ଫସଫରସ୍).
-            
-            2. Scientific Insight: Based on these levels, provide a concise fertilizer recommendation (1-2 sentences) in simple farmer-friendly language.
-            
-            3. Actionable List: List 3-4 specific fertilizer names (e.g., Urea, DAP, MOP, SSP).
+    const imageUrl = normalizeImageUrl(image);
+    if (!imageUrl) {
+      return NextResponse.json({ error: "Invalid image format" }, { status: 400 });
+    }
 
-            Return ONLY a valid JSON object:
+    const prompt = `You are an expert soil scientist. The uploaded image may be any Soil Health Card or report card format from India, in English, Hindi, Odia, or mixed languages. Extract the numeric values for Nitrogen (N), Phosphorus (P), Potassium (K), pH, and Organic Carbon (OC) wherever they appear in the document. Values may be in tables, charts, or free-form report text. Provide clear farmer-friendly fertilizer guidance based on the extracted values, and list 3-4 practical fertilizer names.
+
+Return the result as a JSON object with this exact structure:
+{
+  "metrics": {
+    "N": "value or N/A",
+    "P": "value or N/A", 
+    "K": "value or N/A",
+    "pH": "value or N/A",
+    "OC": "value or N/A"
+  },
+  "recommendation": "farmer-friendly advice based on the metrics",
+  "suggested_fertilizers": ["fertilizer1", "fertilizer2", "fertilizer3"]
+}`;
+
+    const chatCompletion = await groq.chat.completions.create({
+      model: "meta-llama/llama-4-scout-17b-16e-instruct",
+      messages: [
+        {
+          role: "user",
+          content: [
+            { type: "text", text: prompt },
             {
-              "metrics": { "N": "Value + Unit", "P": "Value + Unit", "K": "Value + Unit", "pH": "Value", "OC": "Value + %" },
-              "recommendation": "Simple advice here...",
-              "suggested_fertilizers": ["Urea", "DAP", "etc"]
+              type: "image_url",
+              image_url: {
+                url: imageUrl
+              }
             }
-            
-            If the image is not a Soil Health Card, return error: "INVALID_DOCUMENT"`
-          },
-          {
-            role: "user",
-            content: [
-              { type: "text", text: "Extract metrics and recommendations from this Soil Health Card image." },
-              { type: "image_url", image_url: { url: image } }
-            ]
-          }
-        ],
-        max_tokens: 1000,
-        response_format: { type: "json_object" }
-      }),
+          ]
+        }
+      ],
+      max_tokens: 800,
+      temperature: 0.2,
     });
 
-    if (!visionRes.ok) {
-      const errorData = await visionRes.json().catch(() => ({}));
-      return Response.json({ 
-        error: "Vision AI Analysis Failed", 
-        details: errorData?.error?.message || visionRes.statusText 
-      }, { status: 500 });
+    const assistantMessage = chatCompletion.choices?.[0]?.message;
+    const textResult = typeof assistantMessage?.content === "string" ? assistantMessage.content : null;
+
+    if (!textResult) {
+      return NextResponse.json({ error: "Unable to extract soil health metrics from this image." }, { status: 500 });
     }
 
-    const visionData = await visionRes.json();
-    const content = JSON.parse(visionData.choices[0].message.content);
+    const jsonStart = textResult.indexOf("{");
+    const jsonEnd = textResult.lastIndexOf("}");
+    let extraction: any = null;
 
-    if (content.error === "INVALID_DOCUMENT") {
-      return Response.json({ error: "The provided image does not look like a Soil Health Card. Please upload a clearer document." }, { status: 400 });
+    if (jsonStart !== -1 && jsonEnd !== -1 && jsonEnd > jsonStart) {
+      try {
+        extraction = JSON.parse(textResult.slice(jsonStart, jsonEnd + 1));
+      } catch (parseError) {
+        console.warn("Soil card extraction JSON parse failed, falling back to raw text", parseError);
+      }
     }
 
-    const extraction = content;
+    if (!extraction) {
+      return NextResponse.json({ error: "Unable to extract soil health metrics from this image." }, { status: 500 });
+    }
 
-    // Step 2: Cross-reference with Schemes DB for subsidies
-    // Look for tags like 'soil', 'fertilizer'
+    if (extraction?.error === "INVALID_DOCUMENT") {
+      return NextResponse.json({ error: "The provided image does not look like a Soil Health Card. Please upload a clearer document." }, { status: 400 });
+    }
+
     const { data: schemes } = await supabase
       .from("schemes_insert")
       .select("*")
       .contains("tags", ["soil"])
       .eq("archived", false);
 
-    // Filter more for fertilizer specifically if NPK is low
-    const fertilizerSchemes = await supabase
+    const { data: fertilizerSchemes } = await supabase
       .from("schemes_insert")
       .select("*")
       .contains("tags", ["fertilizer"])
       .eq("archived", false);
 
-    return Response.json({
+    return NextResponse.json({
       ...extraction,
-      matching_subsidies: [...(schemes || []), ...(fertilizerSchemes?.data || [])].slice(0, 3)
+      matching_subsidies: [...(schemes || []), ...(fertilizerSchemes || [])].slice(0, 3)
     });
-
   } catch (err: any) {
-    return Response.json({ error: err?.message || "Internal error" }, { status: 500 });
+    console.error("Soil card extraction failed:", err);
+    return NextResponse.json({ error: err?.message || "Internal error" }, { status: 500 });
   }
 }

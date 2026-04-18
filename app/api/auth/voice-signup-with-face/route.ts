@@ -38,7 +38,9 @@ function getSupabaseAdmin() {
  */
 export async function POST(req: NextRequest) {
   try {
+    console.log('Voice signup API called');
     const { name, mobile, location, crops, faceDescriptor, photo } = await req.json();
+    console.log('Received data:', { name, mobile, location, crops, faceDescriptorLength: faceDescriptor?.length });
 
     // Create supabase client lazily so missing env vars give a clear error
     const supabase = getSupabaseAdmin();

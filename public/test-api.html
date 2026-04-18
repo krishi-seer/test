@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Signup API</title>
+</head>
+<body>
+    <button onclick="testAPI()">Test Signup API</button>
+    <div id="result"></div>
+
+    <script>
+        async function testAPI() {
+            try {
+                const response = await fetch('/api/auth/voice-signup-with-face', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: 'Test User',
+                        mobile: '1234567890',
+                        location: 'Test Location',
+                        crops: 'Test Crops',
+                        faceDescriptor: Array.from({length: 128}, () => Math.random()),
+                        photo: 'data:image/jpeg;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=='
+                    })
+                });
+
+                const result = await response.json();
+                document.getElementById('result').innerText = JSON.stringify(result, null, 2);
+                console.log('Response:', response.status, result);
+            } catch (error) {
+                document.getElementById('result').innerText = 'Error: ' + error.message;
+                console.error('Error:', error);
+            }
+        }
+    </script>
+</body>
+</html>

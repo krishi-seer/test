@@ -64,8 +64,8 @@ export default function DocumentExtractorPage() {
             📷
           </div>
           <div className="text-center">
-            <h2 className="font-bold text-lg text-green-800">Scan Soil Health Card</h2>
-            <p className="text-xs text-green-600 max-w-xs mx-auto">Upload a clear photo of your card to get AI-powered fertilizer & subsidy recommendations</p>
+            <h2 className="font-bold text-lg text-green-800">Scan Any Soil Health Report</h2>
+            <p className="text-xs text-green-600 max-w-xs mx-auto">Upload any soil health card or farm report layout. The AI will detect NPK, pH, OC, and give fertilizer guidance even for different formats.</p>
           </div>
           
           <input 
@@ -88,9 +88,9 @@ export default function DocumentExtractorPage() {
               <Button 
                 onClick={analyzeSoilCard} 
                 disabled={loading}
-                className="bg-amber-500 hover:bg-amber-600 text-white shadow-lg animate-bounce"
+                className="bg-amber-500 hover:bg-amber-600 text-white shadow-lg"
               >
-                {loading ? "🔍 Analyzing..." : "✨ Analyze with AI"}
+                {loading ? "Analyzing document..." : "Analyze any report"}
               </Button>
             )}
           </div>
